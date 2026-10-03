@@ -7,14 +7,18 @@ require_relative "otel/tracing"
 require_relative "otel/recorder"
 
 module Gritz
+  # Optional worker-local OpenTelemetry integration.
+  # @api public
   module Otel
     # Configuration-file syntax for this optional integration.
+    # @api public
     module ConfigurationDSL
       def opentelemetry(&) = Otel.install(@config, &)
     end
 
     class << self
       # Registration is safe before fork; SDK providers/exporters are built in the worker hook.
+      # @api public
       def install(config, &configure)
         return config if config.middleware.entries.any? { |entry| entry.middleware == ServerTracing }
         raise Gritz::ConfigurationError, "a metrics recorder is already installed" if config.metrics_recorder_factory
@@ -84,6 +88,7 @@ module Gritz
       # Keep a slow collector within the worker's heartbeat and shutdown budgets.
       # @api private
       def export_timeout(config) = [1.0, config.status_interval / 2.0, config.shutdown_timeout / 4.0].min
+      # @api private
       def monotonic = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
       private

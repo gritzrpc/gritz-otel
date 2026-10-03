@@ -2,13 +2,13 @@
 
 Server and client spans and worker OTLP metrics for [Gritz](https://github.com/gritzrpc/gritz). SDK providers and exporters start in worker boot hooks, after fork. This optional integration depends on `gritz-core`; applications choose their transport separately.
 
-Requires CRuby 3.3 or later and Gritz 0.6.0. The OpenTelemetry metrics SDK is currently alpha; this gem pins its supported minor versions.
+Requires CRuby 3.3 or later and Gritz 0.9.0. The OpenTelemetry metrics SDK is currently alpha; this gem pins its supported minor versions.
 
 ## Installation and configuration
 
 ```ruby
-gem "gritz", "~> 0.6.0"
-gem "gritz-otel", "~> 0.3.0"
+gem "gritz", "~> 0.9.0"
+gem "gritz-otel", "~> 0.9.0"
 ```
 
 In the Gritz configuration file:
@@ -64,6 +64,12 @@ Tests include a real Linux three-service chain with an OTLP/HTTP protobuf collec
 See the [three-service integration report](docs/reports/T4-08-client-chain.md) for the completion checks and reproduction commands.
 
 The 0.1.0 release supports Gritz 0.4.0; the 0.2.0 release supports Gritz 0.5.0; the 0.3.0 release supports Gritz 0.6.0, including Async server fibers.
+
+The 0.9 series supports Gritz 0.9 during stabilization.
+
+## Documentation
+
+Read the [published guides and API reference](https://gritzrpc.github.io/gritz/), [public API policy](https://github.com/gritzrpc/gritz/blob/main/docs/public-api.md), [support policy](https://github.com/gritzrpc/gritz/blob/main/docs/support-policy.md) and [stabilization gate](https://github.com/gritzrpc/gritz/blob/main/docs/stabilization.md).
 
 ## License
 

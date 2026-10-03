@@ -41,6 +41,7 @@ module Gritz
     end
 
     # Wraps the complete server dispatch, including streaming and error mapping.
+    # @api private
     class ServerTracing
       def initialize(app) = @app = app
 
@@ -59,6 +60,7 @@ module Gritz
     end
 
     # Capture the caller when the invocation is created, before lazy stream consumption.
+    # @api private
     class ClientTracing
       def initialize(app)
         @app = app

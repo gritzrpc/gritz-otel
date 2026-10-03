@@ -3,6 +3,7 @@
 module Gritz
   module Otel
     # Preserve pipe deltas while recording worker-local SDK instruments.
+    # @api private
     class Recorder < Gritz::Metrics::Recorder
       def initialize(worker:, exporter: nil, timeout: 1.0)
         super()
