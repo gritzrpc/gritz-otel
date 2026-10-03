@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 if ENV["GRITZ_RELEASE"] == "1"
-  gem "gritz-native", "= 0.5.0", group: :test
+  gem "gritz-native", "= 0.6.0", group: :test
 else
   gem "gritz-core", git: "https://github.com/gritzrpc/gritz-core.git", branch: "main"
   gem "gritz-native", git: "https://github.com/gritzrpc/gritz-native.git", branch: "main", group: :test

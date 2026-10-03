@@ -2,7 +2,7 @@
 
 The project owner published 0.1.0 and configured Trusted Publishing. Subsequent releases use the workflow below. Initial CHANGELOG notes remain exactly `Initial release.`.
 
-Core and native 0.5.0 must be available on RubyGems before the release workflow runs. Configure this Trusted Publisher on RubyGems:
+Core and native 0.6.0 must be available on RubyGems before the release workflow runs. Configure this Trusted Publisher on RubyGems:
 
 | Field | Value |
 | --- | --- |

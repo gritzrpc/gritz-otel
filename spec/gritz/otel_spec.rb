@@ -109,6 +109,25 @@ RSpec.describe Gritz::Otel do
     expect(OpenTelemetry::Trace.current_span.context.valid?).to be(false)
   end
 
+  it "keeps overlapping server spans isolated between fibers" do
+    install
+    config.run_hooks(:on_worker_boot, 0)
+    app = Gritz::Otel::ServerTracing.new(lambda { |_ctx|
+      before = OpenTelemetry::Trace.current_span.context.trace_id
+      Fiber.yield
+      expect(OpenTelemetry::Trace.current_span.context.trace_id).to eq(before)
+      before.unpack1("H*")
+    })
+    fibers = %w[1 3].map do |digit|
+      ctx = context(metadata: { "traceparent" => "00-#{digit * 32}-#{'2' * 16}-01" })
+      Fiber.new { app.call(ctx) }
+    end
+    fibers.each(&:resume)
+    expect(fibers.map(&:resume)).to eq(["1" * 32, "3" * 32])
+    expect(OpenTelemetry::Trace.current_span.context.valid?).to be(false)
+    expect(exporter.finished_spans.map(&:trace_id).map { |id| id.unpack1("H*") }).to eq(["1" * 32, "3" * 32])
+  end
+
   it "records the final RPC code without exception messages or payloads" do
     install
     config.run_hooks(:on_worker_boot, 0)
