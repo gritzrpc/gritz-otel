@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1
+
+- Require Gritz Core 0.9.1 for operational commands and corrected master readiness timeouts.
+
 ## 0.9.0
 
 - Require Gritz Core 0.9.0 for startup TLS-file validation and the stabilization support policy.

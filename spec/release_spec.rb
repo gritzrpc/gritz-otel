@@ -15,7 +15,7 @@ RSpec.describe "Release preparation" do
     expect(spec.metadata["rubygems_mfa_required"]).to eq("true")
     expect(spec.files.none? { |file| file.start_with?("spec/", "sig/", "bin/") }).to be true
     core = spec.dependencies.find { |dependency| dependency.name == "gritz-core" }
-    expect(core.requirement.to_s).to eq("= 0.9.0")
+    expect(core.requirement.to_s).to eq("= 0.9.1")
     expect(spec.dependencies.map(&:name)).not_to include("grpc", "gritz-native")
   end
 
