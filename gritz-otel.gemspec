@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(__dir__) { Dir["lib/**/*.rb", "README.md", "LICENSE.txt", "CHANGELOG.md"] }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "gritz-core", "= 0.6.0"
+  spec.add_dependency "gritz-core", "= 0.6.1"
   spec.add_dependency "opentelemetry-exporter-otlp", "~> 0.35.0"
   spec.add_dependency "opentelemetry-exporter-otlp-metrics", "~> 0.13.0"
   spec.add_dependency "opentelemetry-metrics-sdk", "~> 0.19.0"
